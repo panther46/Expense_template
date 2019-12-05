@@ -1,12 +1,25 @@
 import React from 'react';
+import ExpenseList from './expense_list';
 
 
 
 function Expenses() {
     return(
         <div className = "container">
-            <h1>From Expenses</h1>
-         </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ITEM</th>
+                    <th>PRICE</th>
+                    <th>CATEGORY</th>
+                    <th>ACTIONS</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <ExpenseList/> 
+                </tbody>
+            </table>
+        </div>
     )
 }
 
