@@ -8,6 +8,18 @@ import AddItem from './components/Add_Item/index';
 
 
 function App() {
+
+const [Result, setResult] = useState([]);
+
+useEffect(()=>{
+  const requestQueryApi = async () => {
+  const query = await axios.get('http://localhost:4000/items');
+  console.log(query.data);
+}
+requestQueryApi();
+
+},);
+
   return (
     <div className="App">
       <Router>
