@@ -14,18 +14,19 @@ const [Result, setResult] = useState([]);
 useEffect(()=>{
   const requestQueryApi = async () => {
   const query = await axios.get('http://localhost:4000/items');
-  console.log(query.data);
+  setResult(query.data);
+  console.log(query.data); // testing by console
 }
 requestQueryApi();
 
-},);
+},[]);
 
   return (
     <div className="App">
       <Router>
        <Header/>
         <Switch>
-            <Route exact path = "/Expenses" component = {Expenses}/>
+            <Route exact path = "/Expenses" render = { () => (<Expenses Result = {Result} />)} />
             <Route exact path = "/new-item" component = {AddItem}/>
         </Switch>
       </Router>

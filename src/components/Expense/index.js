@@ -3,7 +3,7 @@ import ExpenseList from './expense_list';
 
 
 
-function Expenses() {
+function Expenses({Result}) {
     return(
         <div className = "container">
             <table>
@@ -16,7 +16,12 @@ function Expenses() {
                 </tr>
                 </thead>
                 <tbody>
-                    <ExpenseList/> 
+                    {Result.map(item => (
+                       <ExpenseList
+                       key = {Result.id} // key in DB
+                       item = {item} // item
+                       /> 
+                       ))}
                 </tbody>
             </table>
         </div>
