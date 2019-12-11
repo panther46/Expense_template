@@ -30,6 +30,7 @@ requestQueryApi();
             <Route exact path = "/Expenses" render = { () => (<Expenses Result = {Result} />)} />
             <Route exact path = "/new-item" component = {AddItem}/>
             <Route exact path = "/Items/edit/:id" component ={EditItem}/>
+        </Switch>
       </Router>
      
     </div>
