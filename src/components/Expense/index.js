@@ -18,7 +18,7 @@ function Expenses({Result}) {
                 <tbody>
                     {Result.map(item => (
                        <ExpenseList
-                       key = {Result.id} // key in DB
+                       key = {item.id} // key in DB, must be the "item on iteration result.map(xxx)"
                        item = {item} // item
                        /> 
                        ))}

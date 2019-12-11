@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 function ExpenseList({item}){
     const eliminarItem = () =>{
         // Function to delete a item
+        console.log("testing deleting");
         return("");
     }
     return(
@@ -18,10 +19,10 @@ function ExpenseList({item}){
                 to={`/Items/edit/${item.id}`}
                 className="waves-effect waves-light btn">Edit </Link>
                 </td>
-                <td><i 
+                <td><Link
                 className="small material-icons"
                 onClick ={()=>eliminarItem()} // pending, make icon clickable 
-                >delete_forever</i></td>
+                >delete_forever</Link></td>
                 
              </tr>
         </Fragment>
