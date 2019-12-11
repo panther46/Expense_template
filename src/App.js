@@ -5,6 +5,7 @@ import './App.scss';
 import Header from './components/Header/index';
 import Expenses from './components/Expense/index';
 import AddItem from './components/Add_Item/index';
+import EditItem from './components/Edit_Item/index';
 
 
 function App() {
@@ -28,7 +29,7 @@ requestQueryApi();
         <Switch>
             <Route exact path = "/Expenses" render = { () => (<Expenses Result = {Result} />)} />
             <Route exact path = "/new-item" component = {AddItem}/>
-        </Switch>
+            <Route exact path = "/Items/edit/:id" component ={EditItem}/>
       </Router>
      
     </div>
