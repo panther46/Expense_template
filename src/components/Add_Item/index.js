@@ -1,9 +1,16 @@
-import React from 'react';
+import React,{useState} from 'react';
+
 
 
 
 
 function AddItem(){
+
+    // Local States
+    const [ItemName, setItemName] = useState('');
+    const [ItemPrice, setItemPrice] = useState('');
+    const [ItemCategory, setItemCategory] = useState('');
+
     return(
         <div className = "container">
             <form action="#">
@@ -11,37 +18,70 @@ function AddItem(){
                     <div className="col s12">
                         <p>Item Name</p>
                             <div className="input-field col s12">
-                            <input type="text" id="autocomplete-input" class="autocomplete"/>
-                            <label for="autocomplete-input">Autocomplete</label>
+                            <label for="autocomplete-input">Name</label>
+                            <input 
+                            type = "text" 
+                            id = "autocomplete-input" 
+                            className = "autocomplete"
+                            onChange = {e => setItemName(e.target.value)}
+                            
+                            />
                             </div>
+                            
                             <p>Item Price</p>
                             <div className="input-field col s12">
-                            <input type="text" id="autocomplete-input" class="autocomplete"/>
-                            <label for="autocomplete-input">Autocomplete</label>
+                            <input 
+                            type="text" 
+                            id="autocomplete-input" 
+                            className="autocomplete"
+                            onChange = {e => setItemPrice(e.target.value)}
+                            />
+                            <label for="autocomplete-input">Price</label>
                             </div>
                     </div>
-                    <div className = "col s12">
-                    <p>
-                        <label>
-                        <input class="with-gap" name="group1" type="radio"  />
-                        <span>Desert</span>
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                        <input class="with-gap" name="group1" type="radio"  />
-                        <span>Salad</span>
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                        <input class="with-gap" name="group1" type="radio"  />
-                        <span>Drink</span>
-                </label>
-                </p>
+                </div>
+                <div className = "row">
+                <p>Category</p>
+                    <div className = "col s4">
+                        <p>
+                            <label>
+                            <input
+                             type="radio"
+                             className="with-gap" 
+                             name="group1"
+                             onChange = {e => setItemCategory(e.target.value)} 
+                               />
+                            <span>Desert</span>
+                            </label>
+                        </p>
                     </div>
-            
-            </div>            
+                    <div className = "col s4">
+                        <p>
+                            <label>
+                            <input 
+                            type="radio"
+                            className="with-gap" 
+                            name="group1" 
+                            onChange = {e => setItemCategory(e.target.value)}
+                            />
+                            <span>Salad</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div className = "col s4">
+                        <p>
+                            <label>
+                            <input 
+                            type="radio" 
+                            className="with-gap" 
+                            name="group1" 
+                            onChange ={e =>setItemCategory(e.target.value)}
+                            />
+                            <span>Drink</span>
+                            </label>
+                        </p>    
+                    </div>
+                </div>
             </form> 
         </div>   
     )
