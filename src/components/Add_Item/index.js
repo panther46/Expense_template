@@ -11,9 +11,15 @@ function AddItem(){
     const [ItemPrice, setItemPrice] = useState('');
     const [ItemCategory, setItemCategory] = useState('');
 
+    // Form Method
+
+    const addItem = (e) => {
+        // Item Method and validation
+    }
+
     return(
         <div className = "container">
-            <form action="#">
+            <form action="#" onSubmit = {AddItem}>
                 <div className="row">
                     <div className="col s12">
                         <p>Item Name</p>
@@ -81,6 +87,9 @@ function AddItem(){
                             </label>
                         </p>    
                     </div>
+                    
+                        <input type = "submit" className ="waves-effect waves-light btn-large" value="Add Item"/>
+                    
                 </div>
             </form> 
         </div>   
