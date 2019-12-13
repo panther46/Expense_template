@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import ErrorComponent from '../Alerts_components/error';
 
 
 
@@ -10,11 +11,18 @@ function AddItem(){
     const [ItemName, setItemName] = useState('');
     const [ItemPrice, setItemPrice] = useState('');
     const [ItemCategory, setItemCategory] = useState('');
+    // Error State, validation.
+    const [error, setError] = useState(false);
 
     // Form Method
 
-    const addItem = (e) => {
-        // Item Method and validation
+    const AddItem = (e) => {
+        e.preventDefault(); // Reseting the inputs after adding.
+        if (ItemName === '' || ItemPrice === '' || ItemCategory === ''){
+            setError(true);
+            return; //safety stop execution
+        }
+        setError(false);
     }
 
     return(
@@ -22,6 +30,7 @@ function AddItem(){
             <form action="#" onSubmit = {AddItem}>
                 <div className="row">
                     <div className="col s12">
+                        {(error)? <ErrorComponent/>:null}
                         <p>Item Name</p>
                             <div className="input-field col s12">
                             <label for="autocomplete-input">Name</label>
