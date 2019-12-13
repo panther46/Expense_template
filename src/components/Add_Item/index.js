@@ -1,5 +1,7 @@
 import React,{useState} from 'react';
 import ErrorComponent from '../Alerts_components/error';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 
@@ -8,21 +10,32 @@ import ErrorComponent from '../Alerts_components/error';
 function AddItem(){
 
     // Local States
-    const [ItemName, setItemName] = useState('');
-    const [ItemPrice, setItemPrice] = useState('');
-    const [ItemCategory, setItemCategory] = useState('');
+    const [item_name, setItemName] = useState('');
+    const [price_item, setItemPrice] = useState('');
+    const [category, setItemCategory] = useState('');
     // Error State, validation.
     const [error, setError] = useState(false);
 
     // Form Method
 
-    const AddItem = (e) => {
+    const AddItem = async (e) => {
         e.preventDefault(); // Reseting the inputs after adding.
-        if (ItemName === '' || ItemPrice === '' || ItemCategory === ''){
+        if (item_name === '' || price_item === '' || category === ''){
             setError(true);
             return; //safety stop execution
         }
         setError(false);
+        try{
+            const result = await axios.post('http://localhost:4000/items',{
+            item_name,
+            price_item,
+            category
+        });
+            console.log(result);
+        } catch(error){
+            console.log(error);
+
+        };
     }
 
     return(
