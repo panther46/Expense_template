@@ -32,8 +32,19 @@ function AddItem(){
             category
         });
             console.log(result);
+            if (result.status === 201){
+                Swal.fire(
+                    'Good job!',
+                    'Item added!',
+                    'success'
+                  )
+            }
         } catch(error){
-            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+              })
 
         };
     }
