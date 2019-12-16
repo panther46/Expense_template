@@ -9,7 +9,7 @@ import {withRouter} from 'react-router-dom';
 
 
 
-function AddItem({history}){
+function AddItem({history, setReloadingWrapper}){
 
     // Local States
     const [item_name, setItemName] = useState('');
@@ -49,6 +49,8 @@ function AddItem({history}){
               })
 
         }
+        // Setting the reloading wrapper state true.
+        setReloadingWrapper(true);
         // Redirecting
         history.push('/Expenses');
     }

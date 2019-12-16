@@ -11,16 +11,24 @@ import EditItem from './components/Edit_Item/index';
 function App() {
 
 const [Result, setResult] = useState([]);
+// Wrapper state to reload the page after redirection
+const [reloadingWrapper, setReloadingWrapper] = useState(true);
 
-useEffect(()=>{
-  const requestQueryApi = async () => {
-  const query = await axios.get('http://localhost:4000/items');
-  setResult(query.data);
-  console.log(query.data); // testing by console
-}
-requestQueryApi();
+  useEffect(()=>{
+    const requestQueryApi = async () => {
+      if(reloadingWrapper){
+    const query = await axios.get('http://localhost:4000/items');
+    setResult(query.data);
+    console.log(query.data); // testing by console
+      } // end of conditional reloading wrapper
+  }
+  setReloadingWrapper(false); // back to false the wrapper.
+  requestQueryApi();
+  
+  },[reloadingWrapper]);
 
-},[]);
+
+
 
   return (
     <div className="App">
@@ -28,7 +36,7 @@ requestQueryApi();
        <Header/>
         <Switch>
             <Route exact path = "/Expenses" render = { () => (<Expenses Result = {Result} />)} />
-            <Route exact path = "/new-item" component = {AddItem}/>
+            <Route exact path = "/new-item" render = {()=> (<AddItem setReloadingWrapper = {setReloadingWrapper}/>)}/>
             <Route exact path = "/Items/edit/:id" component ={EditItem}/>
         </Switch>
       </Router>
