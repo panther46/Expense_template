@@ -2,12 +2,14 @@ import React,{useState} from 'react';
 import ErrorComponent from '../Alerts_components/error';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+// HOC wrapper exporting.
+import {withRouter} from 'react-router-dom'; 
 
 
 
 
 
-function AddItem(){
+function AddItem({history}){
 
     // Local States
     const [item_name, setItemName] = useState('');
@@ -46,7 +48,9 @@ function AddItem(){
                 text: 'Something went wrong!',
               })
 
-        };
+        }
+        // Redirecting
+        history.push('/Expenses');
     }
 
     return(
@@ -132,4 +136,4 @@ function AddItem(){
 
 
 
-export default AddItem;
+export default withRouter(AddItem);
