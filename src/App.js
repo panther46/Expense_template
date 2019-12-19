@@ -19,7 +19,7 @@ const [reloadingWrapper, setReloadingWrapper] = useState(true);
       if(reloadingWrapper){
     const query = await axios.get('http://localhost:4000/items');
     setResult(query.data);
-    console.log(query.data); // testing by console
+    //console.log(query.data); // testing by console
       } // end of conditional reloading wrapper
   }
   setReloadingWrapper(false); // back to false the wrapper.
@@ -37,7 +37,9 @@ const [reloadingWrapper, setReloadingWrapper] = useState(true);
         <Switch>
             <Route exact path = "/Expenses" render = { () => (<Expenses Result = {Result} />)} />
             <Route exact path = "/new-item" render = {()=> (<AddItem setReloadingWrapper = {setReloadingWrapper}/>)}/>
-            <Route exact path = "/Items/edit/:id" component ={EditItem}/>
+            <Route exact path = "/Items/edit/:id" render ={(props) => {
+              console.log(typeof props.match.params.id);
+            }}/>
         </Switch>
       </Router>
      
