@@ -38,7 +38,15 @@ const [reloadingWrapper, setReloadingWrapper] = useState(true);
             <Route exact path = "/Expenses" render = { () => (<Expenses Result = {Result} />)} />
             <Route exact path = "/new-item" render = {()=> (<AddItem setReloadingWrapper = {setReloadingWrapper}/>)}/>
             <Route exact path = "/Items/edit/:id" render ={(props) => {
-              console.log(typeof props.match.params.id);
+              const ItemIdInt =  parseInt(props.match.params.id); // Generated props from router dom. converting to INT.
+
+              const itemFilter = Result.filter(item => item.id === ItemIdInt); // Filter the main state Result with a condition, The ID on dbJson and the props.
+              console.log(itemFilter[0]); // Testing iteration output
+              return(
+                <EditItem
+                Item = {itemFilter[0]}
+                />
+              )
             }}/>
         </Switch>
       </Router>
