@@ -60,10 +60,11 @@ function AddItem({history, setReloadingWrapper}){
             <form action="#" onSubmit = {AddItem}>
                 <div className="row">
                     <div className="col s12">
+                        <h1>Add Item</h1>
                         {(error)? <ErrorComponent/>:null}
                         <p>Item Name</p>
                             <div className="input-field col s12">
-                            <label for="autocomplete-input">Name</label>
+                            <label for="autocomplete-input"></label>
                             <input 
                             type = "text" 
                             id = "autocomplete-input" 
@@ -81,7 +82,7 @@ function AddItem({history, setReloadingWrapper}){
                             className="autocomplete"
                             onChange = {e => setItemPrice(e.target.value)}
                             />
-                            <label for="autocomplete-input">Price</label>
+                            <label for="autocomplete-input"></label>
                             </div>
                     </div>
                 </div>
