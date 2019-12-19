@@ -1,17 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState,useRef} from 'react';
 import ErrorComponent from '../Alerts_components/error';
 import Swal from 'sweetalert2';
 import {withRouter} from 'react-router-dom'; 
 
 
-function EditItem(){
+function EditItem({Item}){
 
  // Local state, category.
 const [category, setItemCategory] = useState('');
 // Error State, validation.
 const [error, setError] = useState(false);
 
+// REFS declaration.
+const ItemNameRef = useRef('');
+const ItemPriceRef = useRef('');
+
+
+
     function editItem(){
+
+        
 
     }
 
@@ -30,6 +38,8 @@ const [error, setError] = useState(false);
                         type = "text" 
                         id = "autocomplete-input" 
                         className = "autocomplete"
+                        ref = {ItemNameRef} // ref
+                        defaultValue = {Item.item_name} // default value
                         
                         
                         />
@@ -41,6 +51,8 @@ const [error, setError] = useState(false);
                         type="text" 
                         id="autocomplete-input" 
                         className="autocomplete"
+                        ref = {ItemPriceRef} // ref 
+                        defaultValue = {Item.price_item} // default radio
                         
                         />
                         <label for="autocomplete-input"></label>
@@ -56,7 +68,8 @@ const [error, setError] = useState(false);
                          type="radio"
                          className="with-gap" 
                          name="group1"
-                         onChange = {e => setItemCategory(e.target.value)} 
+                         onChange = {e => setItemCategory(e.target.value)}
+                         defaultChecked = {Item.category === 'postre'}  // default radio
                            />
                         <span>Desert</span>
                         </label>
@@ -70,6 +83,7 @@ const [error, setError] = useState(false);
                         className="with-gap" 
                         name="group1" 
                         onChange = {e => setItemCategory(e.target.value)}
+                        defaultChecked = {Item.category === 'Salad'} // default value radio
                         />
                         <span>Salad</span>
                         </label>
@@ -83,6 +97,7 @@ const [error, setError] = useState(false);
                         className="with-gap" 
                         name="group1" 
                         onChange ={e =>setItemCategory(e.target.value)}
+                        defaultChecked = {Item.category === 'Drink'}  // default value radio
                         />
                         <span>Drink</span>
                         </label>
