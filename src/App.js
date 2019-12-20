@@ -45,6 +45,7 @@ const [reloadingWrapper, setReloadingWrapper] = useState(true);
               return(
                 <EditItem
                 Item = {itemFilter[0]}
+                setReloadingWrapper = {setReloadingWrapper}
                 />
               )
             }}/>
