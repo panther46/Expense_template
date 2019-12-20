@@ -1,10 +1,12 @@
 import React, {useState,useRef} from 'react';
 import ErrorComponent from '../Alerts_components/error';
+import axios from 'axios';
 import Swal from 'sweetalert2';
+// HOC wrapper exporting.
 import {withRouter} from 'react-router-dom'; 
 
 
-function EditItem({Item}){
+function EditItem({history, setReloadingWrapper, Item}){
 
  // Local state, category.
 const [category, setItemCategory] = useState('');
@@ -16,8 +18,8 @@ const ItemNameRef = useRef('');
 const ItemPriceRef = useRef('');
 
 
-
-    function editItem(e){
+// arrow function global function on this component with async.
+    const editItem = async (e) => {
         e.preventDefault();
 
         // Validation of category input, if the user does not change the category Item.category (defaultchecked) will be, counter the same state value.
@@ -29,7 +31,32 @@ const ItemPriceRef = useRef('');
             item_name:ItemNameRef.current.value,
             category: categoryItemEdition,
         }
-        console.log(edit);
+        // Preparing the request to API REST.
+        const url = `http://localhost:4000/items/${Item.id}`;
+
+        try{
+            const result = await axios.put(url, edit);
+            console.log(result); // testing.
+            if (result.status === 200){
+                Swal.fire(
+                    'Good job!',
+                    'Item edited!',
+                    'success'
+                  )
+            }
+            // // back to false the wrapper.
+            setReloadingWrapper(false);
+            // Redirecting
+             history.push('/Expenses');
+
+        }catch(error){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+              })
+        }
+
 
     }
 
@@ -123,4 +150,4 @@ const ItemPriceRef = useRef('');
 }
 
 
-export default EditItem;
+export default withRouter(EditItem);
