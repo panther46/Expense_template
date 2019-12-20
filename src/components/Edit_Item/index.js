@@ -17,9 +17,19 @@ const ItemPriceRef = useRef('');
 
 
 
-    function editItem(){
+    function editItem(e){
+        e.preventDefault();
 
-        
+        // Validation of category input, if the user does not change the category Item.category (defaultchecked) will be, counter the same state value.
+        let categoryItemEdition = (category === '') ? Item.category : category;
+        console.log(categoryItemEdition);
+        // Obtain Values:
+        const edit = {
+            price_item: ItemPriceRef.current.value,
+            item_name:ItemNameRef.current.value,
+            category: categoryItemEdition,
+        }
+        console.log(edit);
 
     }
 
@@ -104,7 +114,7 @@ const ItemPriceRef = useRef('');
                     </p>    
                 </div>
                 
-                    <input type = "submit" className ="waves-effect waves-light btn-large" value="Add Item"/>
+                    <input type = "submit" className ="waves-effect waves-light btn-large" value="Edit Item"/>
                 
             </div>
         </form> 
